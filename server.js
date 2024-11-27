@@ -32,9 +32,10 @@ app.post('/addproduct',(req,res)=>{
     res.send("data was added")
 })
 
-app.delete('deleteproduct/:id',(req,res)=>{
+app.delete('/deleteproduct/:id',(req,res)=>{
     var del = JSON.parse(fs.readFileSync("Products.txt").toString());
     del.splice(req.params.id,1)
+    res.json(del)
     fs.writeFileSync('Products.txt',JSON.stringify(del))
     res.send("product deleted")
 })
